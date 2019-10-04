@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.zju.cst.bookstore.mbg.mapper.AccountMapper">
-  <resultMap id="BaseResultMap" type="edu.zju.cst.bookstore.mbg.model.Account">
+<mapper namespace="edu.zju.cst.bookstore.mbg.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="edu.zju.cst.bookstore.mbg.model.Role">
     <id column="id" jdbcType="CHAR" property="id" />
     <result column="available" jdbcType="BIT" property="available" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="gender" jdbcType="CHAR" property="gender" />
-    <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="mobile" jdbcType="CHAR" property="mobile" />
-    <result column="org_id" jdbcType="CHAR" property="orgId" />
-    <result column="audit" jdbcType="VARCHAR" property="audit" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="user_type" jdbcType="VARCHAR" property="userType" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -76,16 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, available, username, password, name, gender, age, email, mobile, org_id, audit, 
-    user_type, create_time, update_time
+    id, available, role_name, description, user_type, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AccountExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="edu.zju.cst.bookstore.mbg.model.RoleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from account
+    from role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -96,70 +88,45 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from account
+    from role
     where id = #{id,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from account
+    delete from role
     where id = #{id,jdbcType=CHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AccountExample">
-    delete from account
+  <delete id="deleteByExample" parameterType="edu.zju.cst.bookstore.mbg.model.RoleExample">
+    delete from role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.zju.cst.bookstore.mbg.model.Account">
+  <insert id="insert" parameterType="edu.zju.cst.bookstore.mbg.model.Role">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       select replace(uuid(),"-","")
     </selectKey>
-    insert into account (id, available, username, 
-      password, name, gender, 
-      age, email, mobile, org_id, 
-      audit, user_type, create_time, 
+    insert into role (id, available, role_name, 
+      description, user_type, create_time, 
       update_time)
-    values (#{id,jdbcType=CHAR}, #{available,jdbcType=BIT}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
-      #{age,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=CHAR}, #{orgId,jdbcType=CHAR}, 
-      #{audit,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=CHAR}, #{available,jdbcType=BIT}, #{roleName,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="edu.zju.cst.bookstore.mbg.model.Account">
+  <insert id="insertSelective" parameterType="edu.zju.cst.bookstore.mbg.model.Role">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       select replace(uuid(),"-","")
     </selectKey>
-    insert into account
+    insert into role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       id,
       <if test="available != null">
         available,
       </if>
-      <if test="username != null">
-        username,
+      <if test="roleName != null">
+        role_name,
       </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="gender != null">
-        gender,
-      </if>
-      <if test="age != null">
-        age,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="orgId != null">
-        org_id,
-      </if>
-      <if test="audit != null">
-        audit,
+      <if test="description != null">
+        description,
       </if>
       <if test="userType != null">
         user_type,
@@ -176,32 +143,11 @@
       <if test="available != null">
         #{available,jdbcType=BIT},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        #{gender,jdbcType=CHAR},
-      </if>
-      <if test="age != null">
-        #{age,jdbcType=INTEGER},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=CHAR},
-      </if>
-      <if test="orgId != null">
-        #{orgId,jdbcType=CHAR},
-      </if>
-      <if test="audit != null">
-        #{audit,jdbcType=VARCHAR},
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="userType != null">
         #{userType,jdbcType=VARCHAR},
@@ -214,14 +160,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AccountExample" resultType="java.lang.Long">
-    select count(*) from account
+  <select id="countByExample" parameterType="edu.zju.cst.bookstore.mbg.model.RoleExample" resultType="java.lang.Long">
+    select count(*) from role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update account
+    update role
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=CHAR},
@@ -229,32 +175,11 @@
       <if test="record.available != null">
         available = #{record.available,jdbcType=BIT},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.roleName != null">
+        role_name = #{record.roleName,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.gender != null">
-        gender = #{record.gender,jdbcType=CHAR},
-      </if>
-      <if test="record.age != null">
-        age = #{record.age,jdbcType=INTEGER},
-      </if>
-      <if test="record.email != null">
-        email = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mobile != null">
-        mobile = #{record.mobile,jdbcType=CHAR},
-      </if>
-      <if test="record.orgId != null">
-        org_id = #{record.orgId,jdbcType=CHAR},
-      </if>
-      <if test="record.audit != null">
-        audit = #{record.audit,jdbcType=VARCHAR},
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.userType != null">
         user_type = #{record.userType,jdbcType=VARCHAR},
@@ -271,18 +196,11 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update account
+    update role
     set id = #{record.id,jdbcType=CHAR},
       available = #{record.available,jdbcType=BIT},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      gender = #{record.gender,jdbcType=CHAR},
-      age = #{record.age,jdbcType=INTEGER},
-      email = #{record.email,jdbcType=VARCHAR},
-      mobile = #{record.mobile,jdbcType=CHAR},
-      org_id = #{record.orgId,jdbcType=CHAR},
-      audit = #{record.audit,jdbcType=VARCHAR},
+      role_name = #{record.roleName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
       user_type = #{record.userType,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
@@ -290,38 +208,17 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.zju.cst.bookstore.mbg.model.Account">
-    update account
+  <update id="updateByPrimaryKeySelective" parameterType="edu.zju.cst.bookstore.mbg.model.Role">
+    update role
     <set>
       <if test="available != null">
         available = #{available,jdbcType=BIT},
       </if>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        gender = #{gender,jdbcType=CHAR},
-      </if>
-      <if test="age != null">
-        age = #{age,jdbcType=INTEGER},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        mobile = #{mobile,jdbcType=CHAR},
-      </if>
-      <if test="orgId != null">
-        org_id = #{orgId,jdbcType=CHAR},
-      </if>
-      <if test="audit != null">
-        audit = #{audit,jdbcType=VARCHAR},
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="userType != null">
         user_type = #{userType,jdbcType=VARCHAR},
@@ -335,18 +232,11 @@
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.zju.cst.bookstore.mbg.model.Account">
-    update account
+  <update id="updateByPrimaryKey" parameterType="edu.zju.cst.bookstore.mbg.model.Role">
+    update role
     set available = #{available,jdbcType=BIT},
-      username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=CHAR},
-      age = #{age,jdbcType=INTEGER},
-      email = #{email,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=CHAR},
-      org_id = #{orgId,jdbcType=CHAR},
-      audit = #{audit,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       user_type = #{userType,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}

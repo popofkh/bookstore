@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.zju.cst.bookstore.mbg.mapper.AccountMapper">
-  <resultMap id="BaseResultMap" type="edu.zju.cst.bookstore.mbg.model.Account">
+<mapper namespace="edu.zju.cst.bookstore.mbg.mapper.AddressMapper">
+  <resultMap id="BaseResultMap" type="edu.zju.cst.bookstore.mbg.model.Address">
     <id column="id" jdbcType="CHAR" property="id" />
     <result column="available" jdbcType="BIT" property="available" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="gender" jdbcType="CHAR" property="gender" />
-    <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="mobile" jdbcType="CHAR" property="mobile" />
-    <result column="org_id" jdbcType="CHAR" property="orgId" />
-    <result column="audit" jdbcType="VARCHAR" property="audit" />
-    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="provience" jdbcType="VARCHAR" property="provience" />
+    <result column="prefecture_city" jdbcType="VARCHAR" property="prefectureCity" />
+    <result column="county_city" jdbcType="VARCHAR" property="countyCity" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="account_id" jdbcType="CHAR" property="accountId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -76,16 +72,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, available, username, password, name, gender, age, email, mobile, org_id, audit, 
-    user_type, create_time, update_time
+    id, available, country, provience, prefecture_city, county_city, detail, account_id, 
+    create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AccountExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AddressExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from account
+    from address
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -96,73 +92,59 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from account
+    from address
     where id = #{id,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from account
+    delete from address
     where id = #{id,jdbcType=CHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AccountExample">
-    delete from account
+  <delete id="deleteByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AddressExample">
+    delete from address
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.zju.cst.bookstore.mbg.model.Account">
+  <insert id="insert" parameterType="edu.zju.cst.bookstore.mbg.model.Address">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       select replace(uuid(),"-","")
     </selectKey>
-    insert into account (id, available, username, 
-      password, name, gender, 
-      age, email, mobile, org_id, 
-      audit, user_type, create_time, 
+    insert into address (id, available, country, 
+      provience, prefecture_city, county_city, 
+      detail, account_id, create_time, 
       update_time)
-    values (#{id,jdbcType=CHAR}, #{available,jdbcType=BIT}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
-      #{age,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=CHAR}, #{orgId,jdbcType=CHAR}, 
-      #{audit,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=CHAR}, #{available,jdbcType=BIT}, #{country,jdbcType=VARCHAR}, 
+      #{provience,jdbcType=VARCHAR}, #{prefectureCity,jdbcType=VARCHAR}, #{countyCity,jdbcType=VARCHAR}, 
+      #{detail,jdbcType=VARCHAR}, #{accountId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="edu.zju.cst.bookstore.mbg.model.Account">
+  <insert id="insertSelective" parameterType="edu.zju.cst.bookstore.mbg.model.Address">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       select replace(uuid(),"-","")
     </selectKey>
-    insert into account
+    insert into address
     <trim prefix="(" suffix=")" suffixOverrides=",">
       id,
       <if test="available != null">
         available,
       </if>
-      <if test="username != null">
-        username,
+      <if test="country != null">
+        country,
       </if>
-      <if test="password != null">
-        password,
+      <if test="provience != null">
+        provience,
       </if>
-      <if test="name != null">
-        name,
+      <if test="prefectureCity != null">
+        prefecture_city,
       </if>
-      <if test="gender != null">
-        gender,
+      <if test="countyCity != null">
+        county_city,
       </if>
-      <if test="age != null">
-        age,
+      <if test="detail != null">
+        detail,
       </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="orgId != null">
-        org_id,
-      </if>
-      <if test="audit != null">
-        audit,
-      </if>
-      <if test="userType != null">
-        user_type,
+      <if test="accountId != null">
+        account_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -176,35 +158,23 @@
       <if test="available != null">
         #{available,jdbcType=BIT},
       </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="provience != null">
+        #{provience,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="prefectureCity != null">
+        #{prefectureCity,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null">
-        #{gender,jdbcType=CHAR},
+      <if test="countyCity != null">
+        #{countyCity,jdbcType=VARCHAR},
       </if>
-      <if test="age != null">
-        #{age,jdbcType=INTEGER},
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=CHAR},
-      </if>
-      <if test="orgId != null">
-        #{orgId,jdbcType=CHAR},
-      </if>
-      <if test="audit != null">
-        #{audit,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null">
-        #{userType,jdbcType=VARCHAR},
+      <if test="accountId != null">
+        #{accountId,jdbcType=CHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -214,14 +184,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AccountExample" resultType="java.lang.Long">
-    select count(*) from account
+  <select id="countByExample" parameterType="edu.zju.cst.bookstore.mbg.model.AddressExample" resultType="java.lang.Long">
+    select count(*) from address
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update account
+    update address
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=CHAR},
@@ -229,35 +199,23 @@
       <if test="record.available != null">
         available = #{record.available,jdbcType=BIT},
       </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
+      <if test="record.country != null">
+        country = #{record.country,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.provience != null">
+        provience = #{record.provience,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.prefectureCity != null">
+        prefecture_city = #{record.prefectureCity,jdbcType=VARCHAR},
       </if>
-      <if test="record.gender != null">
-        gender = #{record.gender,jdbcType=CHAR},
+      <if test="record.countyCity != null">
+        county_city = #{record.countyCity,jdbcType=VARCHAR},
       </if>
-      <if test="record.age != null">
-        age = #{record.age,jdbcType=INTEGER},
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=VARCHAR},
       </if>
-      <if test="record.email != null">
-        email = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mobile != null">
-        mobile = #{record.mobile,jdbcType=CHAR},
-      </if>
-      <if test="record.orgId != null">
-        org_id = #{record.orgId,jdbcType=CHAR},
-      </if>
-      <if test="record.audit != null">
-        audit = #{record.audit,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userType != null">
-        user_type = #{record.userType,jdbcType=VARCHAR},
+      <if test="record.accountId != null">
+        account_id = #{record.accountId,jdbcType=CHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -271,60 +229,44 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update account
+    update address
     set id = #{record.id,jdbcType=CHAR},
       available = #{record.available,jdbcType=BIT},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      gender = #{record.gender,jdbcType=CHAR},
-      age = #{record.age,jdbcType=INTEGER},
-      email = #{record.email,jdbcType=VARCHAR},
-      mobile = #{record.mobile,jdbcType=CHAR},
-      org_id = #{record.orgId,jdbcType=CHAR},
-      audit = #{record.audit,jdbcType=VARCHAR},
-      user_type = #{record.userType,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      provience = #{record.provience,jdbcType=VARCHAR},
+      prefecture_city = #{record.prefectureCity,jdbcType=VARCHAR},
+      county_city = #{record.countyCity,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=VARCHAR},
+      account_id = #{record.accountId,jdbcType=CHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.zju.cst.bookstore.mbg.model.Account">
-    update account
+  <update id="updateByPrimaryKeySelective" parameterType="edu.zju.cst.bookstore.mbg.model.Address">
+    update address
     <set>
       <if test="available != null">
         available = #{available,jdbcType=BIT},
       </if>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
+      <if test="provience != null">
+        provience = #{provience,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="prefectureCity != null">
+        prefecture_city = #{prefectureCity,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null">
-        gender = #{gender,jdbcType=CHAR},
+      <if test="countyCity != null">
+        county_city = #{countyCity,jdbcType=VARCHAR},
       </if>
-      <if test="age != null">
-        age = #{age,jdbcType=INTEGER},
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        mobile = #{mobile,jdbcType=CHAR},
-      </if>
-      <if test="orgId != null">
-        org_id = #{orgId,jdbcType=CHAR},
-      </if>
-      <if test="audit != null">
-        audit = #{audit,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null">
-        user_type = #{userType,jdbcType=VARCHAR},
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=CHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -335,19 +277,15 @@
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.zju.cst.bookstore.mbg.model.Account">
-    update account
+  <update id="updateByPrimaryKey" parameterType="edu.zju.cst.bookstore.mbg.model.Address">
+    update address
     set available = #{available,jdbcType=BIT},
-      username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=CHAR},
-      age = #{age,jdbcType=INTEGER},
-      email = #{email,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=CHAR},
-      org_id = #{orgId,jdbcType=CHAR},
-      audit = #{audit,jdbcType=VARCHAR},
-      user_type = #{userType,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      provience = #{provience,jdbcType=VARCHAR},
+      prefecture_city = #{prefectureCity,jdbcType=VARCHAR},
+      county_city = #{countyCity,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=CHAR}

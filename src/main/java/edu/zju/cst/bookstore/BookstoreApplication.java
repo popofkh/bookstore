@@ -1,6 +1,5 @@
 package edu.zju.cst.bookstore;
 
-import edu.zju.cst.bookstore.dto.Audit;
 import edu.zju.cst.bookstore.mbg.mapper.AccountMapper;
 import edu.zju.cst.bookstore.mbg.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,5 @@
 /**
- * Organization.java
+ * Priviledge.java
  * Copyright(C) 2019 popo_fkh
  * @date 2019-10-04
  */
@@ -9,24 +9,18 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Organization implements Serializable {
-    @ApiModelProperty(value = "组织编号")
+public class Priviledge implements Serializable {
+    @ApiModelProperty(value = "编号")
     private String id;
 
     @ApiModelProperty(value = "是否有效")
     private Boolean available;
 
-    @ApiModelProperty(value = "上级组织编号")
-    private String pid;
-
-    @ApiModelProperty(value = "组织名称")
-    private String orgName;
+    @ApiModelProperty(value = "权限名称")
+    private String priviledgeName;
 
     @ApiModelProperty(value = "描述")
     private String description;
-
-    @ApiModelProperty(value = "组织管理员")
-    private String admin;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
@@ -52,20 +46,12 @@ public class Organization implements Serializable {
         this.available = available;
     }
 
-    public String getPid() {
-        return pid;
+    public String getPriviledgeName() {
+        return priviledgeName;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
-    public String getOrgName() {
-        return orgName;
-    }
-
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
+    public void setPriviledgeName(String priviledgeName) {
+        this.priviledgeName = priviledgeName;
     }
 
     public String getDescription() {
@@ -74,14 +60,6 @@ public class Organization implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
     }
 
     public Date getCreateTime() {
@@ -108,10 +86,8 @@ public class Organization implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", available=").append(available);
-        sb.append(", pid=").append(pid);
-        sb.append(", orgName=").append(orgName);
+        sb.append(", priviledgeName=").append(priviledgeName);
         sb.append(", description=").append(description);
-        sb.append(", admin=").append(admin);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

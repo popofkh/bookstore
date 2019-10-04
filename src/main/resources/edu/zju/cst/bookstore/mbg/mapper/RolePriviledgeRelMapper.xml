@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.zju.cst.bookstore.mbg.mapper.OrganizationMapper">
-  <resultMap id="BaseResultMap" type="edu.zju.cst.bookstore.mbg.model.Organization">
+<mapper namespace="edu.zju.cst.bookstore.mbg.mapper.RolePriviledgeRelMapper">
+  <resultMap id="BaseResultMap" type="edu.zju.cst.bookstore.mbg.model.RolePriviledgeRel">
     <id column="id" jdbcType="CHAR" property="id" />
     <result column="available" jdbcType="BIT" property="available" />
-    <result column="pid" jdbcType="CHAR" property="pid" />
-    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="admin" jdbcType="CHAR" property="admin" />
+    <result column="role_id" jdbcType="CHAR" property="roleId" />
+    <result column="priviledge_id" jdbcType="CHAR" property="priviledgeId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -70,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, available, pid, org_name, description, admin, create_time, update_time
+    id, available, role_id, priviledge_id, create_time, update_time
   </sql>
-  <select id="selectByExample" parameterType="edu.zju.cst.bookstore.mbg.model.OrganizationExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="edu.zju.cst.bookstore.mbg.model.RolePriviledgeRelExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from organization
+    from role_priviledge_rel
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,51 +87,45 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from organization
+    from role_priviledge_rel
     where id = #{id,jdbcType=CHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from organization
+    delete from role_priviledge_rel
     where id = #{id,jdbcType=CHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.zju.cst.bookstore.mbg.model.OrganizationExample">
-    delete from organization
+  <delete id="deleteByExample" parameterType="edu.zju.cst.bookstore.mbg.model.RolePriviledgeRelExample">
+    delete from role_priviledge_rel
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.zju.cst.bookstore.mbg.model.Organization">
+  <insert id="insert" parameterType="edu.zju.cst.bookstore.mbg.model.RolePriviledgeRel">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       select replace(uuid(),"-","")
     </selectKey>
-    insert into organization (id, available, pid, org_name, 
-      description, admin, create_time, 
-      update_time)
-    values (#{id,jdbcType=CHAR}, #{available,jdbcType=BIT}, #{pid,jdbcType=CHAR}, #{orgName,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{admin,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into role_priviledge_rel (id, available, role_id, 
+      priviledge_id, create_time, update_time
+      )
+    values (#{id,jdbcType=CHAR}, #{available,jdbcType=BIT}, #{roleId,jdbcType=CHAR}, 
+      #{priviledgeId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="edu.zju.cst.bookstore.mbg.model.Organization">
+  <insert id="insertSelective" parameterType="edu.zju.cst.bookstore.mbg.model.RolePriviledgeRel">
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
       select replace(uuid(),"-","")
     </selectKey>
-    insert into organization
+    insert into role_priviledge_rel
     <trim prefix="(" suffix=")" suffixOverrides=",">
       id,
       <if test="available != null">
         available,
       </if>
-      <if test="pid != null">
-        pid,
+      <if test="roleId != null">
+        role_id,
       </if>
-      <if test="orgName != null">
-        org_name,
-      </if>
-      <if test="description != null">
-        description,
-      </if>
-      <if test="admin != null">
-        admin,
+      <if test="priviledgeId != null">
+        priviledge_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -147,17 +139,11 @@
       <if test="available != null">
         #{available,jdbcType=BIT},
       </if>
-      <if test="pid != null">
-        #{pid,jdbcType=CHAR},
+      <if test="roleId != null">
+        #{roleId,jdbcType=CHAR},
       </if>
-      <if test="orgName != null">
-        #{orgName,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="admin != null">
-        #{admin,jdbcType=CHAR},
+      <if test="priviledgeId != null">
+        #{priviledgeId,jdbcType=CHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -167,14 +153,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.zju.cst.bookstore.mbg.model.OrganizationExample" resultType="java.lang.Long">
-    select count(*) from organization
+  <select id="countByExample" parameterType="edu.zju.cst.bookstore.mbg.model.RolePriviledgeRelExample" resultType="java.lang.Long">
+    select count(*) from role_priviledge_rel
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update organization
+    update role_priviledge_rel
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=CHAR},
@@ -182,17 +168,11 @@
       <if test="record.available != null">
         available = #{record.available,jdbcType=BIT},
       </if>
-      <if test="record.pid != null">
-        pid = #{record.pid,jdbcType=CHAR},
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=CHAR},
       </if>
-      <if test="record.orgName != null">
-        org_name = #{record.orgName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
-      </if>
-      <if test="record.admin != null">
-        admin = #{record.admin,jdbcType=CHAR},
+      <if test="record.priviledgeId != null">
+        priviledge_id = #{record.priviledgeId,jdbcType=CHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -206,36 +186,28 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update organization
+    update role_priviledge_rel
     set id = #{record.id,jdbcType=CHAR},
       available = #{record.available,jdbcType=BIT},
-      pid = #{record.pid,jdbcType=CHAR},
-      org_name = #{record.orgName,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
-      admin = #{record.admin,jdbcType=CHAR},
+      role_id = #{record.roleId,jdbcType=CHAR},
+      priviledge_id = #{record.priviledgeId,jdbcType=CHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.zju.cst.bookstore.mbg.model.Organization">
-    update organization
+  <update id="updateByPrimaryKeySelective" parameterType="edu.zju.cst.bookstore.mbg.model.RolePriviledgeRel">
+    update role_priviledge_rel
     <set>
       <if test="available != null">
         available = #{available,jdbcType=BIT},
       </if>
-      <if test="pid != null">
-        pid = #{pid,jdbcType=CHAR},
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=CHAR},
       </if>
-      <if test="orgName != null">
-        org_name = #{orgName,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="admin != null">
-        admin = #{admin,jdbcType=CHAR},
+      <if test="priviledgeId != null">
+        priviledge_id = #{priviledgeId,jdbcType=CHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -246,13 +218,11 @@
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.zju.cst.bookstore.mbg.model.Organization">
-    update organization
+  <update id="updateByPrimaryKey" parameterType="edu.zju.cst.bookstore.mbg.model.RolePriviledgeRel">
+    update role_priviledge_rel
     set available = #{available,jdbcType=BIT},
-      pid = #{pid,jdbcType=CHAR},
-      org_name = #{orgName,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      admin = #{admin,jdbcType=CHAR},
+      role_id = #{roleId,jdbcType=CHAR},
+      priviledge_id = #{priviledgeId,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=CHAR}

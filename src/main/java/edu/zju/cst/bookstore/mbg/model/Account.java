@@ -1,11 +1,13 @@
 /**
  * Account.java
  * Copyright(C) 2019 popo_fkh
- * @date 2019-10-03
+ * @date 2019-10-04
  */
 package edu.zju.cst.bookstore.mbg.model;
 
-import edu.zju.cst.bookstore.dto.Audit;
+import edu.zju.cst.bookstore.common.Audit;
+import edu.zju.cst.bookstore.common.Gender;
+import edu.zju.cst.bookstore.common.UserType;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
@@ -26,6 +28,12 @@ public class Account implements Serializable {
     @ApiModelProperty(value = "姓名")
     private String name;
 
+    @ApiModelProperty(value = "性别")
+    private Gender gender;
+
+    @ApiModelProperty(value = "年龄")
+    private Integer age;
+
     @ApiModelProperty(value = "邮箱")
     private String email;
 
@@ -39,7 +47,7 @@ public class Account implements Serializable {
     private Audit audit;
 
     @ApiModelProperty(value = "用户类型")
-    private String userType;
+    private UserType userType;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
@@ -89,6 +97,22 @@ public class Account implements Serializable {
         this.name = name;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -121,11 +145,11 @@ public class Account implements Serializable {
         this.audit = audit;
     }
 
-    public String getUserType() {
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 
@@ -156,6 +180,8 @@ public class Account implements Serializable {
         sb.append(", username=").append(username);
         sb.append(", password=").append(password);
         sb.append(", name=").append(name);
+        sb.append(", gender=").append(gender);
+        sb.append(", age=").append(age);
         sb.append(", email=").append(email);
         sb.append(", mobile=").append(mobile);
         sb.append(", orgId=").append(orgId);

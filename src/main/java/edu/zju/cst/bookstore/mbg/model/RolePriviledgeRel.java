@@ -1,5 +1,5 @@
 /**
- * Organization.java
+ * RolePriviledgeRel.java
  * Copyright(C) 2019 popo_fkh
  * @date 2019-10-04
  */
@@ -9,24 +9,17 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Organization implements Serializable {
-    @ApiModelProperty(value = "组织编号")
+public class RolePriviledgeRel implements Serializable {
     private String id;
 
     @ApiModelProperty(value = "是否有效")
     private Boolean available;
 
-    @ApiModelProperty(value = "上级组织编号")
-    private String pid;
+    @ApiModelProperty(value = "角色id")
+    private String roleId;
 
-    @ApiModelProperty(value = "组织名称")
-    private String orgName;
-
-    @ApiModelProperty(value = "描述")
-    private String description;
-
-    @ApiModelProperty(value = "组织管理员")
-    private String admin;
+    @ApiModelProperty(value = "权限id")
+    private String priviledgeId;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
@@ -52,36 +45,20 @@ public class Organization implements Serializable {
         this.available = available;
     }
 
-    public String getPid() {
-        return pid;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
-    public String getOrgName() {
-        return orgName;
+    public String getPriviledgeId() {
+        return priviledgeId;
     }
 
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
+    public void setPriviledgeId(String priviledgeId) {
+        this.priviledgeId = priviledgeId;
     }
 
     public Date getCreateTime() {
@@ -108,10 +85,8 @@ public class Organization implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", available=").append(available);
-        sb.append(", pid=").append(pid);
-        sb.append(", orgName=").append(orgName);
-        sb.append(", description=").append(description);
-        sb.append(", admin=").append(admin);
+        sb.append(", roleId=").append(roleId);
+        sb.append(", priviledgeId=").append(priviledgeId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

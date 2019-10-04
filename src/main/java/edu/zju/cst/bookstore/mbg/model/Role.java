@@ -1,32 +1,30 @@
 /**
- * Organization.java
+ * Role.java
  * Copyright(C) 2019 popo_fkh
  * @date 2019-10-04
  */
 package edu.zju.cst.bookstore.mbg.model;
 
+import edu.zju.cst.bookstore.common.UserType;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Organization implements Serializable {
-    @ApiModelProperty(value = "组织编号")
+public class Role implements Serializable {
+    @ApiModelProperty(value = "编号")
     private String id;
 
     @ApiModelProperty(value = "是否有效")
     private Boolean available;
 
-    @ApiModelProperty(value = "上级组织编号")
-    private String pid;
-
-    @ApiModelProperty(value = "组织名称")
-    private String orgName;
+    @ApiModelProperty(value = "角色名")
+    private String roleName;
 
     @ApiModelProperty(value = "描述")
     private String description;
 
-    @ApiModelProperty(value = "组织管理员")
-    private String admin;
+    @ApiModelProperty(value = "用户类型")
+    private UserType userType;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
@@ -52,20 +50,12 @@ public class Organization implements Serializable {
         this.available = available;
     }
 
-    public String getPid() {
-        return pid;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
-    public String getOrgName() {
-        return orgName;
-    }
-
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getDescription() {
@@ -76,12 +66,12 @@ public class Organization implements Serializable {
         this.description = description;
     }
 
-    public String getAdmin() {
-        return admin;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setAdmin(String admin) {
-        this.admin = admin;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public Date getCreateTime() {
@@ -108,10 +98,9 @@ public class Organization implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", available=").append(available);
-        sb.append(", pid=").append(pid);
-        sb.append(", orgName=").append(orgName);
+        sb.append(", roleName=").append(roleName);
         sb.append(", description=").append(description);
-        sb.append(", admin=").append(admin);
+        sb.append(", userType=").append(userType);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

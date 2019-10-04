@@ -1,6 +1,6 @@
 package edu.zju.cst.bookstore.service.impl;
 
-import edu.zju.cst.bookstore.dto.Audit;
+import edu.zju.cst.bookstore.common.Audit;
 import edu.zju.cst.bookstore.mbg.mapper.AccountMapper;
 import edu.zju.cst.bookstore.mbg.model.Account;
 import edu.zju.cst.bookstore.mbg.model.AccountExample;

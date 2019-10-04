@@ -1,11 +1,13 @@
 /**
  * AccountExample.java
  * Copyright(C) 2019 popo_fkh
- * @date 2019-10-03
+ * @date 2019-10-04
  */
 package edu.zju.cst.bookstore.mbg.model;
 
-import edu.zju.cst.bookstore.dto.Audit;
+import edu.zju.cst.bookstore.common.Audit;
+import edu.zju.cst.bookstore.common.Gender;
+import edu.zju.cst.bookstore.common.UserType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -451,6 +453,136 @@ public class AccountExample {
             return (Criteria) this;
         }
 
+        public Criteria andGenderIsNull() {
+            addCriterion("gender is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderIsNotNull() {
+            addCriterion("gender is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderEqualTo(Gender value) {
+            addCriterion("gender =", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderNotEqualTo(Gender value) {
+            addCriterion("gender <>", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderGreaterThan(Gender value) {
+            addCriterion("gender >", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderGreaterThanOrEqualTo(Gender value) {
+            addCriterion("gender >=", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderLessThan(Gender value) {
+            addCriterion("gender <", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderLessThanOrEqualTo(Gender value) {
+            addCriterion("gender <=", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderLike(Gender value) {
+            addCriterion("gender like", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderNotLike(Gender value) {
+            addCriterion("gender not like", value, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderIn(List<Gender> values) {
+            addCriterion("gender in", values, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderNotIn(List<Gender> values) {
+            addCriterion("gender not in", values, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderBetween(Gender value1, Gender value2) {
+            addCriterion("gender between", value1, value2, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenderNotBetween(Gender value1, Gender value2) {
+            addCriterion("gender not between", value1, value2, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeIsNull() {
+            addCriterion("age is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeIsNotNull() {
+            addCriterion("age is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeEqualTo(Integer value) {
+            addCriterion("age =", value, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeNotEqualTo(Integer value) {
+            addCriterion("age <>", value, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeGreaterThan(Integer value) {
+            addCriterion("age >", value, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("age >=", value, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeLessThan(Integer value) {
+            addCriterion("age <", value, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeLessThanOrEqualTo(Integer value) {
+            addCriterion("age <=", value, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeIn(List<Integer> values) {
+            addCriterion("age in", values, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeNotIn(List<Integer> values) {
+            addCriterion("age not in", values, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeBetween(Integer value1, Integer value2) {
+            addCriterion("age between", value1, value2, "age");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeNotBetween(Integer value1, Integer value2) {
+            addCriterion("age not between", value1, value2, "age");
+            return (Criteria) this;
+        }
+
         public Criteria andEmailIsNull() {
             addCriterion("email is null");
             return (Criteria) this;
@@ -741,62 +873,62 @@ public class AccountExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeEqualTo(String value) {
+        public Criteria andUserTypeEqualTo(UserType value) {
             addCriterion("user_type =", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeNotEqualTo(String value) {
+        public Criteria andUserTypeNotEqualTo(UserType value) {
             addCriterion("user_type <>", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeGreaterThan(String value) {
+        public Criteria andUserTypeGreaterThan(UserType value) {
             addCriterion("user_type >", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andUserTypeGreaterThanOrEqualTo(UserType value) {
             addCriterion("user_type >=", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeLessThan(String value) {
+        public Criteria andUserTypeLessThan(UserType value) {
             addCriterion("user_type <", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeLessThanOrEqualTo(String value) {
+        public Criteria andUserTypeLessThanOrEqualTo(UserType value) {
             addCriterion("user_type <=", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeLike(String value) {
+        public Criteria andUserTypeLike(UserType value) {
             addCriterion("user_type like", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeNotLike(String value) {
+        public Criteria andUserTypeNotLike(UserType value) {
             addCriterion("user_type not like", value, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeIn(List<String> values) {
+        public Criteria andUserTypeIn(List<UserType> values) {
             addCriterion("user_type in", values, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeNotIn(List<String> values) {
+        public Criteria andUserTypeNotIn(List<UserType> values) {
             addCriterion("user_type not in", values, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeBetween(String value1, String value2) {
+        public Criteria andUserTypeBetween(UserType value1, UserType value2) {
             addCriterion("user_type between", value1, value2, "userType");
             return (Criteria) this;
         }
 
-        public Criteria andUserTypeNotBetween(String value1, String value2) {
+        public Criteria andUserTypeNotBetween(UserType value1, UserType value2) {
             addCriterion("user_type not between", value1, value2, "userType");
             return (Criteria) this;
         }
