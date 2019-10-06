@@ -1,7 +1,7 @@
 /**
  * AccountMapper.java
  * Copyright(C) 2019 popo_fkh
- * @date 2019-10-04
+ * @date 2019-10-06
  */
 package edu.zju.cst.bookstore.mbg.mapper;
 

@@ -1,5 +1,6 @@
 package edu.zju.cst.bookstore.service.impl;
 
+import edu.zju.cst.bookstore.common.api.BizServiceException;
 import edu.zju.cst.bookstore.dto.OrganizationResult;
 import edu.zju.cst.bookstore.mbg.mapper.OrganizationMapper;
 import edu.zju.cst.bookstore.mbg.model.Organization;
@@ -16,7 +17,7 @@ import java.util.Objects;
 
 /**
  * @author 方康华
- * @description TODO
+ * @description 组织管理实现
  * @date 2019/10/4 20:48
  */
 @Service
@@ -30,7 +31,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
         Organization org = organizationMapper.selectByPrimaryKey(orgId);
         if(Objects.isNull(org)) {
-
+            throw new BizServiceException("Organization.NotFount");
         }
         return buildOrganizationResult(org, false);
     }
@@ -38,9 +39,12 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public int updateOrg(String orgId, Organization org) {
         org.setId(orgId);
+        if(Objects.isNull(organizationMapper.selectByPrimaryKey(orgId))) {
+            throw new BizServiceException("Organization.NotFount");
+        }
         int update = organizationMapper.updateByPrimaryKeySelective(org);
         if(update != 1) {
-
+            throw new BizServiceException("Organization.Update.Failed");
         }
         return update;
     }
@@ -89,6 +93,10 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public int deleteOrg(String orgId) {
+        Organization org = organizationMapper.selectByPrimaryKey(orgId);
+        if(Objects.isNull(org)) {
+            throw new BizServiceException("Organization.NotFount");
+        }
         return organizationMapper.deleteByPrimaryKey(orgId);
     }
 

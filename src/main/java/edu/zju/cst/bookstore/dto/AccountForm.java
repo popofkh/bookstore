@@ -1,13 +1,9 @@
 package edu.zju.cst.bookstore.dto;
 
-import edu.zju.cst.bookstore.common.Audit;
-import edu.zju.cst.bookstore.common.Gender;
-import edu.zju.cst.bookstore.common.UserType;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 /**
  * @author 方康华

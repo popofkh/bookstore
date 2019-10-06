@@ -5,7 +5,7 @@
  */
 package edu.zju.cst.bookstore.mbg.model;
 
-import edu.zju.cst.bookstore.common.UserType;
+import edu.zju.cst.bookstore.dto.UserType;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;

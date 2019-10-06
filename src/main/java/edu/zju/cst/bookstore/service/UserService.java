@@ -1,5 +1,6 @@
 package edu.zju.cst.bookstore.service;
 
+import edu.zju.cst.bookstore.dto.AccountForm;
 import edu.zju.cst.bookstore.mbg.model.Account;
 
 /**
@@ -9,5 +10,5 @@ import edu.zju.cst.bookstore.mbg.model.Account;
  */
 public interface UserService {
 
-    Account userRegister();
+    Account userRegister(AccountForm account);
 }

@@ -5,7 +5,7 @@
  */
 package edu.zju.cst.bookstore.mbg.model;
 
-import edu.zju.cst.bookstore.common.UserType;
+import edu.zju.cst.bookstore.dto.UserType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

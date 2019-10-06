@@ -36,7 +36,6 @@ public enum ResponseCode {
 
     BUSINESS_ERROR(550, "Business Error");
 
-
     private final long code;
     private final String reason;
 

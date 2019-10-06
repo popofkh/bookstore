@@ -1,13 +1,13 @@
 /**
  * AccountExample.java
  * Copyright(C) 2019 popo_fkh
- * @date 2019-10-04
+ * @date 2019-10-06
  */
 package edu.zju.cst.bookstore.mbg.model;
 
-import edu.zju.cst.bookstore.common.Audit;
-import edu.zju.cst.bookstore.common.Gender;
-import edu.zju.cst.bookstore.common.UserType;
+import edu.zju.cst.bookstore.dto.Audit;
+import edu.zju.cst.bookstore.dto.Gender;
+import edu.zju.cst.bookstore.dto.UserType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

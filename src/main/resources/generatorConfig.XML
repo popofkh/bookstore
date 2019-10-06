@@ -62,9 +62,9 @@
                 且selectKey标签会插在insert后面。
                 注：selectKey标签用于返回主键的值-->
             <generatedKey column="id" sqlStatement='select replace(uuid(),"-","")' identity="false" type="pre"/>
-            <columnOverride column="gender" javaType="edu.zju.cst.bookstore.common.Gender"/>
-            <columnOverride column="audit" javaType="edu.zju.cst.bookstore.common.Audit"/>
-            <columnOverride column="user_type" javaType="edu.zju.cst.bookstore.common.UserType"/>
+            <columnOverride column="gender" javaType="edu.zju.cst.bookstore.dto.Gender"/>
+            <columnOverride column="audit" javaType="edu.zju.cst.bookstore.dto.Audit"/>
+            <columnOverride column="user_type" javaType="edu.zju.cst.bookstore.dto.UserType"/>
 
         </table>
 

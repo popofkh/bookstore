@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author 方康华
- * @description TODO
+ * @description 组织管理接口
  * @date 2019/10/4 20:47
  */
 public interface OrganizationService {

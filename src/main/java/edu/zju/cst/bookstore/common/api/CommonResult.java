@@ -7,13 +7,13 @@ package edu.zju.cst.bookstore.common.api;
  */
 public class CommonResult<T> {
 
-    private long code;
+    private ResponseCode code;
     private String message;
     private T content;
 
     private CommonResult() { }
 
-    private CommonResult(long code, String message, T content) {
+    private CommonResult(ResponseCode code, String message, T content) {
         this.code = code;
         this.message = message;
         this.content = content;
@@ -21,21 +21,21 @@ public class CommonResult<T> {
 
     /**
      * 成功返回结果
-     * @param data 获取的数据
+     * @param content 获取的数据
      * @return 通用返回对象
      */
-    public static <T> CommonResult<T> success(T data) {
-        return new CommonResult<>(ResponseCode.OK.getCode(), ResponseCode.OK.getMessage(), data);
+    public static <T> CommonResult<T> success(T content) {
+        return new CommonResult<>(ResponseCode.OK, ResponseCode.OK.getMessage(), content);
     }
 
     /**
      * 成功返回结果
-     * @param data 获取的数据
+     * @param content 获取的数据
      * @param message 提示信息
      * @return 通用返回对象
      */
-    public static <T> CommonResult<T> success(T data, String message) {
-        return new CommonResult<>(ResponseCode.OK.getCode(), message, data);
+    public static <T> CommonResult<T> success(ResponseCode code,String message, T content) {
+        return new CommonResult<>(code, message, content);
     }
 
     /**
@@ -43,60 +43,15 @@ public class CommonResult<T> {
      * @param message 提示信息
      * @return 通用返回对象
      */
-    public static <T>CommonResult<T> failed(String message) {
-        return new CommonResult<>(ResponseCode.NO_CONTENT.getCode(), message, null);
+    public static <T>CommonResult<T> failed(ResponseCode code, String message) {
+        return new CommonResult<>(code, message, null);
     }
 
-    /**
-     * 失败返回结果
-     * @return
-     */
-    public static <T> CommonResult<T> failed() {
-        return new CommonResult<>(ResponseCode.NO_CONTENT.getCode(), ResponseCode.NO_CONTENT.getMessage(), null);
-    }
-
-    /**
-     * 参数验证失败返回结果
-     * @param <T>
-     * @return
-     */
-    public static <T> CommonResult<T> validateFailed() {
-        return new CommonResult<>(ResponseCode.NO_CONTENT.getCode(), ResponseCode.NO_CONTENT.getMessage(), null);
-    }
-
-    /**
-     * 参数验证失败返回结果
-     * @param message 提示信息
-     */
-    public static <T> CommonResult<T> validateFailed(String message) {
-        return new CommonResult<T>(ResponseCode.NO_CONTENT.getCode(), message, null);
-    }
-
-    /**
-     * 未登录返回结果
-     * @param data
-     * @param <T>
-     * @return
-     */
-    public static <T> CommonResult<T> unauthorized(T data) {
-        return new CommonResult<>(ResponseCode.NO_CONTENT.getCode(), ResponseCode.NO_CONTENT.getMessage(), data);
-    }
-
-    /**
-     * 未授权返回结果
-     * @param data
-     * @param <T>
-     * @return
-     */
-    public static <T> CommonResult<T> forbidden(T data) {
-        return new CommonResult<T>(ResponseCode.FORBIDDEN.getCode(), ResponseCode.FORBIDDEN.getMessage(), data);
-    }
-
-    public long getCode() {
+    public ResponseCode getCode() {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCode(ResponseCode code) {
         this.code = code;
     }
 

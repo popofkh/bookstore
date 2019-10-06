@@ -1,4 +1,4 @@
-package edu.zju.cst.bookstore.common;
+package edu.zju.cst.bookstore.dto;
 
 /**
  * @author 方康华
