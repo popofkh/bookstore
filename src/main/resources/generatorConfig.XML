@@ -56,7 +56,7 @@
                              targetProject="src\main\java"/>
 
         <!--生成所有表-->
-        <table tableName="%">
+        <table tableName="account">
             <!--该标签用于指定在映射文件中插入一个selectKey标签，
                 identity为true表示该列会被标记为identity列，
                 且selectKey标签会插在insert后面。

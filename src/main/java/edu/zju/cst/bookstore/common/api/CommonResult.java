@@ -1,8 +1,4 @@
-package edu.zju.cst.bookstore.common;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+package edu.zju.cst.bookstore.common.api;
 
 /**
  * @author 方康华
@@ -29,7 +25,7 @@ public class CommonResult<T> {
      * @return 通用返回对象
      */
     public static <T> CommonResult<T> success(T data) {
-        return new CommonResult<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+        return new CommonResult<>(ResponseCode.OK.getCode(), ResponseCode.OK.getMessage(), data);
     }
 
     /**
@@ -39,7 +35,7 @@ public class CommonResult<T> {
      * @return 通用返回对象
      */
     public static <T> CommonResult<T> success(T data, String message) {
-        return new CommonResult<>(ResultCode.SUCCESS.getCode(), message, data);
+        return new CommonResult<>(ResponseCode.OK.getCode(), message, data);
     }
 
     /**
@@ -48,7 +44,7 @@ public class CommonResult<T> {
      * @return 通用返回对象
      */
     public static <T>CommonResult<T> failed(String message) {
-        return new CommonResult<>(ResultCode.FAILED.getCode(), message, null);
+        return new CommonResult<>(ResponseCode.NO_CONTENT.getCode(), message, null);
     }
 
     /**
@@ -56,7 +52,7 @@ public class CommonResult<T> {
      * @return
      */
     public static <T> CommonResult<T> failed() {
-        return new CommonResult<>(ResultCode.FAILED.getCode(), ResultCode.FAILED.getMessage(), null);
+        return new CommonResult<>(ResponseCode.NO_CONTENT.getCode(), ResponseCode.NO_CONTENT.getMessage(), null);
     }
 
     /**
@@ -65,7 +61,7 @@ public class CommonResult<T> {
      * @return
      */
     public static <T> CommonResult<T> validateFailed() {
-        return new CommonResult<>(ResultCode.VALIDATE_FAILED.getCode(), ResultCode.VALIDATE_FAILED.getMessage(), null);
+        return new CommonResult<>(ResponseCode.NO_CONTENT.getCode(), ResponseCode.NO_CONTENT.getMessage(), null);
     }
 
     /**
@@ -73,7 +69,7 @@ public class CommonResult<T> {
      * @param message 提示信息
      */
     public static <T> CommonResult<T> validateFailed(String message) {
-        return new CommonResult<T>(ResultCode.VALIDATE_FAILED.getCode(), message, null);
+        return new CommonResult<T>(ResponseCode.NO_CONTENT.getCode(), message, null);
     }
 
     /**
@@ -83,7 +79,7 @@ public class CommonResult<T> {
      * @return
      */
     public static <T> CommonResult<T> unauthorized(T data) {
-        return new CommonResult<>(ResultCode.UNAUTHORIZED.getCode(), ResultCode.UNAUTHORIZED.getMessage(), data);
+        return new CommonResult<>(ResponseCode.NO_CONTENT.getCode(), ResponseCode.NO_CONTENT.getMessage(), data);
     }
 
     /**
@@ -93,7 +89,7 @@ public class CommonResult<T> {
      * @return
      */
     public static <T> CommonResult<T> forbidden(T data) {
-        return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
+        return new CommonResult<T>(ResponseCode.FORBIDDEN.getCode(), ResponseCode.FORBIDDEN.getMessage(), data);
     }
 
     public long getCode() {
