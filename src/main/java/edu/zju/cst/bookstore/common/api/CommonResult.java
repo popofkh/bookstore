@@ -34,7 +34,7 @@ public class CommonResult<T> {
      * @param message 提示信息
      * @return 通用返回对象
      */
-    public static <T> CommonResult<T> success(ResponseCode code,String message, T content) {
+    public static <T> CommonResult<T> success(ResponseCode code, String message, T content) {
         return new CommonResult<>(code, message, content);
     }
 

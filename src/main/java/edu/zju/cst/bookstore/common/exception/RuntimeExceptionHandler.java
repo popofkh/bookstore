@@ -1,6 +1,6 @@
-package edu.zju.cst.bookstore.common.utils;
+package edu.zju.cst.bookstore.common.exception;
 
-import edu.zju.cst.bookstore.common.api.BizServiceException;
+import edu.zju.cst.bookstore.common.exception.BizServiceException;
 import edu.zju.cst.bookstore.common.api.CommonResult;
 import edu.zju.cst.bookstore.common.api.ResponseCode;
 import org.springframework.web.bind.annotation.ControllerAdvice;

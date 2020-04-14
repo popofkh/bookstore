@@ -1,5 +1,7 @@
 package edu.zju.cst.bookstore.common.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -11,7 +13,8 @@ import java.util.Properties;
  * @description 读取配置文件工具类
  * @date 2019/10/6 21:33
  */
-public class Message {
+@Component
+public final class MessageUtil {
 
     private static Map<String, String> message = new HashMap<>();
 
@@ -21,7 +24,7 @@ public class Message {
 
     static {
         try {
-            InputStream in = Message.class.getResourceAsStream(PROPERTIES_PATH + PROPERTIES_FILE_NAME + PROPERTIES_FILE_POSTFIX);
+            InputStream in = MessageUtil.class.getResourceAsStream(PROPERTIES_PATH + PROPERTIES_FILE_NAME + PROPERTIES_FILE_POSTFIX);
             Properties properties = new Properties();
             properties.load(in);
             Enumeration<?> enumeration = properties.propertyNames();

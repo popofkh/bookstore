@@ -1,4 +1,6 @@
-package edu.zju.cst.bookstore.common.api;
+package edu.zju.cst.bookstore.common.exception;
+
+import edu.zju.cst.bookstore.common.api.ResponseCode;
 
 /**
  * @author 方康华

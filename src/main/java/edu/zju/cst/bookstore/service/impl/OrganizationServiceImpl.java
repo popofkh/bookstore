@@ -1,6 +1,6 @@
 package edu.zju.cst.bookstore.service.impl;
 
-import edu.zju.cst.bookstore.common.api.BizServiceException;
+import edu.zju.cst.bookstore.common.exception.BizServiceException;
 import edu.zju.cst.bookstore.dto.OrganizationResult;
 import edu.zju.cst.bookstore.mbg.mapper.OrganizationMapper;
 import edu.zju.cst.bookstore.mbg.model.Organization;
